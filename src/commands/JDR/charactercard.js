@@ -38,7 +38,7 @@ module.exports = class CharacterCardCommand extends Command {
         { name: "Points de vie totaux", value: `${characterInfo.totalHealthPoints}` },
       ]);
 
-    if (image.startsWith("https://")) embed.setThumbnail(image);
+    if (image && image.startsWith("https://")) embed.setThumbnail(image);
 
     channel.send({
       embeds: [
