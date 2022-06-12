@@ -6,7 +6,7 @@ module.exports = class RollCommand extends Command {
       name: "roll",
       category: "JDR",
       description: "Jète un ou plusieurs dès du nombre de faces désiré.",
-      usage: "roll [nombre] <nombrederoll>",
+      usage: "roll [nombre] <nombre-de-dès>",
       examples: ["roll 100", "roll 218"],
       options: [
         {
@@ -16,7 +16,7 @@ module.exports = class RollCommand extends Command {
           required: true,
         },
         {
-          name: "nombreroll",
+          name: "nombre-de-dès",
           description: "Nombre de lancés que vous souhaitez faire.",
           type: "INTEGER",
           required: false,

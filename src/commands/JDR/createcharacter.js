@@ -7,8 +7,8 @@ module.exports = class CharacterCreateCommand extends Command {
     super(client, {
       name: "charactercreate",
       category: "JDR",
-      description: "Créer le fiche du personnage.",
-      usage: "charactercreate [nom] [vie]",
+      description: "Crée le fiche du personnage.",
+      usage: "charactercreate [nom] [race] [classe] [vie]",
       examples: ["charactercreate Amaël 100000"],
       userPermissions: ["MANAGE_GUILD"],
       options: [
@@ -55,8 +55,8 @@ module.exports = class CharacterCreateCommand extends Command {
   }
 
   async execute(interaction) {
-    const { options, channel } = interaction;
 
+    const { options, channel } = interaction;
     const name = options.getString("nom");
     const race = options.getString("race");
     const characterClass = options.getString("classe");

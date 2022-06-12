@@ -1,5 +1,5 @@
 const { Inhibitor } = require("sheweny");
-  
+
 module.exports = class BlackListInhibitor extends Inhibitor {
   constructor(client) {
     super(client, "blacklist", {

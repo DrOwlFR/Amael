@@ -8,7 +8,7 @@ module.exports = class CharacterCardCommand extends Command {
       name: "charactercard",
       category: "JDR",
       description: "Envoie la carte du personnage.",
-      usage: "charactercard [name]",
+      usage: "charactercard [nom]",
       examples: ["charactercard Amaël"],
       userPermissions: ["MANAGE_GUILD"],
       options: [{

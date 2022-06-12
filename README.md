@@ -27,4 +27,14 @@ Ce bot utilise le framework [sheweny](https://sheweny.js.org/) afin de simplifie
 1. Cloner la repo.
 2. Renommer le fichier `config.template.js` en `config.js` et mettre votre token.
 3. Installer les dépendences : `npm install`.
-4. Démarrer le bot : `node .\src\index.js`
+4. Démarrer le bot : `node .\src\index.js`.
+
+
+## Modifications des races et des classes
+
+Il vous est également possible d'ajouter, d'enlever, ou de renommer les races et les classes. Pour ce faire :
+1. Aller dans le fichier `createcharacter.js` situé dans `src/commands/JDR`.
+2. Chercher les options `race` et `classe`.
+3. À l'intérieur de ces options vous avez une key `choices`, vous pouvez rajouter, enlever, ou renommer des lignes en suivant la même typo que celle déjà présente.
+4. Sauvegarder le fichier.
+5. Relancer le bot : `node .\src\index.js`

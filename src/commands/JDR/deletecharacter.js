@@ -23,6 +23,7 @@ module.exports = class CharacterDeleteCommand extends Command {
   }
 
   async execute(interaction) {
+
     const { options } = interaction;
     const name = options.getString("nom");
     const charactersData = JSON.parse(readFileSync("D:/Documents/DEV/8 - Amaël/src/structures/charactersData.json"), "utf-8");
