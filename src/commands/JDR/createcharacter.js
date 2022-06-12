@@ -247,7 +247,7 @@ module.exports = class CharacterCreateCommand extends Command {
 
     const validationEmbed = this.client.functions.embed()
       .setTitle("<:shield_check:904023639840669737> Personnage créé")
-      .setDescription(`• Nom : ${name}\n• Race : ${race}\n• Classe : ${characterClass}\n• Points de vie : ${health}\n`);
+      .setDescription(`• Nom : ${name}\n• Race : ${race}\n• Classe : ${characterClass}\n• Points de vie : ${health}\n\n• Agilité : ${agility}/10\n• Endurance : ${endurance}/10\n• Force : ${strength}/10\n• Précision : ${precision}/10\n• Résistance physique : ${physicalResistance}/10\n• Vitesse : ${speed}/10\n\n• Magie réparatrice : ${restorativeMagic}\n• Magie destructrice : ${destructiveMagic}\n• Résistance magique : ${magicalResistance}\n\n• Courage : ${courage}\n• Débrouillardise : ${resourcefulness}\n• Éloquence : ${eloquence}\n• Perspicacité : ${judgment}\n• Sociabilité : ${sociability}\n• Tempérance : ${temperance}`);
 
     const channelEmbed = this.client.functions.embed()
       .setTitle(`${name}`)
