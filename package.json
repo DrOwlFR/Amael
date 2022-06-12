@@ -1,7 +1,7 @@
 {
   "name": "amael",
   "version": "1.0.0",
-  "description": "",
+  "description": "A french Discord bot for Roleplayers",
   "main": "src/index.js",
   "scripts": {
     "start": "node ./src/index.js"
@@ -17,7 +17,11 @@
     "eslint-plugin-prettier": "^4.0.0",
     "prettier": "^2.6.2"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DrOwlFR/Amael.git"
+  },
   "keywords": [],
-  "author": "",
+  "author": "DrOwlFR",
   "license": "MIT"
 }
