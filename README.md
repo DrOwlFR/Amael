@@ -38,3 +38,5 @@ Il vous est également possible d'ajouter, d'enlever, ou de renommer les races e
 3. À l'intérieur de ces options vous avez une key `choices`, vous pouvez rajouter, enlever, ou renommer des lignes en suivant la même typo que celle déjà présente.
 4. Sauvegarder le fichier.
 5. Relancer le bot : `node .\src\index.js`.
+
+*Il vous est également possible de modifier les statistiques.*
