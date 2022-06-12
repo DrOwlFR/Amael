@@ -27,17 +27,22 @@ module.exports = class CharacterCardCommand extends Command {
     const name = options.getString("nom");
     const charactersData = JSON.parse(readFileSync("D:/Documents/DEV/8 - Amaël/src/structures/charactersData.json"), "utf-8");
     const characterInfo = charactersData[name];
+    const image = characterInfo.image;
+
+    const embed = this.client.functions.embed()
+      .setTitle(`${characterInfo.name}`)
+      .setDescription(`**Points de vie actuels :** ${"```"}md\n# ${characterInfo.currentHealthPoints} ${"```"}`)
+      .addFields([
+        { name: "Classe", value: `${characterInfo.characterClass}` },
+        { name: "Race", value: `${characterInfo.race}` },
+        { name: "Points de vie totaux", value: `${characterInfo.totalHealthPoints}` },
+      ]);
+
+    if (image.startsWith("https://")) embed.setThumbnail(image);
 
     channel.send({
       embeds: [
-        this.client.functions.embed()
-          .setTitle(`${characterInfo.name}`)
-          .setDescription(`**Points de vie actuels :** ${"```"}md\n# ${characterInfo.currentHealthPoints} ${"```"}`)
-          .addFields([
-            { name: "Classe", value: `${characterInfo.characterClass}` },
-            { name: "Race", value: `${characterInfo.race}` },
-            { name: "Points de vie totaux", value: `${characterInfo.totalHealthPoints}` },
-          ]),
+        embed,
       ],
       components: [
         new MessageActionRow()

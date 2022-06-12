@@ -50,6 +50,12 @@ module.exports = class CharacterCreateCommand extends Command {
           type: "INTEGER",
           required: true,
         },
+        {
+          name: "image",
+          description: "Image du personnage (en lien)",
+          type: "STRING",
+          required: false,
+        },
       ],
     });
   }
@@ -61,12 +67,14 @@ module.exports = class CharacterCreateCommand extends Command {
     const race = options.getString("race");
     const characterClass = options.getString("classe");
     const health = options.getInteger("vie");
+    const image = options.getString("image");
     const character = {
       name,
       race,
       characterClass,
       totalHealthPoints: health,
       currentHealthPoints: health,
+      image,
     };
 
     const charactersData = JSON.parse(readFileSync("D:/Documents/DEV/8 - Amaël/src/structures/charactersData.json", "utf-8"));
@@ -79,25 +87,34 @@ module.exports = class CharacterCreateCommand extends Command {
       }
     });
 
+    const validationEmbed = this.client.functions.embed()
+      .setTitle("<:shield_check:904023639840669737> Personnage créé")
+      .setDescription(`• Nom : ${name}\n• Race : ${race}\n• Classe : ${characterClass}\n• Points de vie : ${health}`);
+
+    const channelEmbed = this.client.functions.embed()
+      .setTitle(`${name}`)
+      .setDescription(`**Points de vie actuels :** ${"```"}md\n# ${health} ${"```"}`)
+      .addFields([
+        { name: "Classe", value: `${characterClass}` },
+        { name: "Race", value: `${race}` },
+        { name: "Points de vie totaux", value: `${health}` },
+      ]);
+
+    if (image.startsWith("https://")) {
+      validationEmbed.setThumbnail(image);
+      channelEmbed.setThumbnail(image);
+    }
+
     interaction.reply({
       embeds: [
-        this.client.functions.embed()
-          .setTitle("<:shield_check:904023639840669737> Personnage créé")
-          .setDescription(`• Nom : ${name}\n• Race : ${race}\n• Classe : ${characterClass}\n• Points de vie : ${health}`),
+        validationEmbed,
       ],
       ephemeral: true,
     });
 
     channel.send({
       embeds: [
-        this.client.functions.embed()
-          .setTitle(`${name}`)
-          .setDescription(`**Points de vie actuels :** ${"```"}md\n# ${health} ${"```"}`)
-          .addFields([
-            { name: "Classe", value: `${characterClass}` },
-            { name: "Race", value: `${race}` },
-            { name: "Points de vie totaux", value: `${health}` },
-          ]),
+        channelEmbed,
       ],
       components: [
         new MessageActionRow()
