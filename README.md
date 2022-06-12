@@ -25,7 +25,7 @@ Ce bot utilise le framework [sheweny](https://sheweny.js.org/) afin de simplifie
 ## Comment l'installer
 
 1. Cloner la repo.
-2. Renommer le fichier `config.template.js` en `config.js` et mettre votre token.
+2. Renommer le fichier `config.template.js` — il est situé dans `src/structures` — en `config.js` et mettre votre token.
 3. Installer les dépendences : `npm install`.
 4. Démarrer le bot : `node .\src\index.js`.
 
