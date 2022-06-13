@@ -27,15 +27,18 @@ module.exports = class CharacterCardCommand extends Command {
     const name = options.getString("nom");
     const charactersData = JSON.parse(readFileSync("D:/Documents/DEV/8 - Amaël/src/structures/charactersData.json"), "utf-8");
     const characterInfo = charactersData[name];
+    const statistics = characterInfo.statistics;
     const image = characterInfo.image;
 
     const embed = this.client.functions.embed()
-      .setTitle(`${characterInfo.name}`)
+      .setTitle(`${name}`)
       .setDescription(`**Points de vie actuels :** ${"```"}md\n# ${characterInfo.currentHealthPoints} ${"```"}`)
       .addFields([
         { name: "Classe", value: `${characterInfo.characterClass}` },
         { name: "Race", value: `${characterInfo.race}` },
         { name: "Points de vie totaux", value: `${characterInfo.totalHealthPoints}` },
+        { name: "Statistiques", value: `• **Agilité** : ${statistics.agility}/10\n• **Endurance** : ${statistics.endurance}/10\n• **Force** : ${statistics.strength}/10\n• **Précision** : ${statistics.precision}/10\n• **Résistance physique** : ${statistics.physicalResistance}/10\n• **Vitesse** : ${statistics.speed}/10\n\n• **Magie réparatrice** : ${statistics.restorativeMagic}/10\n• **Magie destructrice** : ${statistics.destructiveMagic}/10\n• **Résistance magique** : ${statistics.magicalResistance}/10\n\n• **Courage** : ${statistics.courage}/10\n• **Débrouillardise** : ${statistics.resourcefulness}/10\n• **Éloquence** : ${statistics.eloquence}/10\n• **Perspicacité** : ${statistics.judgment}/10\n• **Sociabilité** : ${statistics.sociability}/10\n• **Tempérance** : ${statistics.temperance}/10` },
+        { name: "Histoire", value: `*[${name}](${characterInfo.background})*` },
       ]);
 
     if (image && image.startsWith("https://")) embed.setThumbnail(image);

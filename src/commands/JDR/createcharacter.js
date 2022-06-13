@@ -176,6 +176,12 @@ module.exports = class CharacterCreateCommand extends Command {
           type: "STRING",
           required: false,
         },
+        {
+          name: "histoire",
+          description: "Lien vers l'histoire du personnage",
+          type: "STRING",
+          required: false,
+        },
       ],
     });
   }
@@ -188,6 +194,7 @@ module.exports = class CharacterCreateCommand extends Command {
     const characterClass = options.getString("classe");
     const health = options.getInteger("vie");
     const image = options.getString("image");
+    let background = options.getString("histoire") || "Aucune histoire fournie.";
 
     const agility = options.getInteger("agilité");
     const endurance = options.getInteger("endurance");
@@ -207,7 +214,6 @@ module.exports = class CharacterCreateCommand extends Command {
     const sociability = options.getInteger("sociabilité");
     const temperance = options.getInteger("tempérance");
 
-
     const character = {
       name,
       race,
@@ -215,6 +221,7 @@ module.exports = class CharacterCreateCommand extends Command {
       totalHealthPoints: health,
       currentHealthPoints: health,
       image,
+      background,
       statistics: {
         agility,
         endurance,
@@ -256,8 +263,16 @@ module.exports = class CharacterCreateCommand extends Command {
         { name: "Classe", value: `${characterClass}` },
         { name: "Race", value: `${race}` },
         { name: "Points de vie totaux", value: `${health}` },
-        { name: "Statistiques", value: `• Agilité : ${agility}/10\n• Endurance : ${endurance}/10\n• Force : ${strength}/10\n• Précision : ${precision}/10\n• Résistance physique : ${physicalResistance}/10\n• Vitesse : ${speed}/10\n\n• Magie réparatrice : ${restorativeMagic}\n• Magie destructrice : ${destructiveMagic}\n• Résistance magique : ${magicalResistance}\n\n• Courage : ${courage}\n• Débrouillardise : ${resourcefulness}\n• Éloquence : ${eloquence}\n• Perspicacité : ${judgment}\n• Sociabilité : ${sociability}\n• Tempérance : ${temperance}` },
+        { name: "Statistiques", value: `• **Agilité** : ${agility}/10\n• **Endurance** : ${endurance}/10\n• **Force** : ${strength}/10\n• **Précision** : ${precision}/10\n• **Résistance physique** : ${physicalResistance}/10\n• **Vitesse** : ${speed}/10\n\n• **Magie réparatrice** : ${restorativeMagic}/10\n• **Magie destructrice** : ${destructiveMagic}/10\n• **Résistance magique** : ${magicalResistance}/10\n\n• **Courage** : ${courage}/10\n• **Débrouillardise** : ${resourcefulness}/10\n• **Éloquence** : ${eloquence}/10\n• **Perspicacité** : ${judgment}/10\n• **Sociabilité** : ${sociability}/10\n• **Tempérance** : ${temperance}/10` },
       ]);
+
+    if (!background.startsWith("https://")) {
+      background = "Aucune histoire fournie.";
+      channelEmbed.addField("Histoire", background);
+    }
+    else {
+      channelEmbed.addField("Histoire", `*[${name}](${background})*`);
+    };
 
     if (image && image.startsWith("https://")) {
       validationEmbed.setThumbnail(image);
