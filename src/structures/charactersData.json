@@ -1,28 +1,2 @@
 {
-    "Amael": {
-        "name": "Amael",
-        "race": "Elfe noir.e",
-        "characterClass": "Assassin",
-        "totalHealthPoints": 5,
-        "currentHealthPoints": 5,
-        "image": null,
-        "background": "pouet",
-        "statistics": {
-            "agility": 6,
-            "endurance": 8,
-            "strength": 4,
-            "precision": 6,
-            "physicalResistance": 9,
-            "speed": 2,
-            "restorativeMagic": 4,
-            "destructiveMagic": 6,
-            "magicalResistance": 7,
-            "courage": 2,
-            "resourcefulness": 5,
-            "eloquence": 6,
-            "judgment": 4,
-            "sociability": 9,
-            "temperance": 4
-        }
-    }
 }
